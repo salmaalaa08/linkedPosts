@@ -1,10 +1,10 @@
 <div class="w-full h-dvh flex justify-center items-center">
-   <div class="container shadow border border-gray-100 w-[850px] rounded-4xl relative min-h-[600px]" [ngClass]="{'active': isSignUp}">
+   <div class="shadow border border-gray-100 w-[60%] rounded-4xl relative min-h-[740px]" [ngClass]="{'active': isSignUp}">
    
              <!-- Sign up -->
     <div class="form-container  sign-up">
         <form [formGroup]="signupForm" (ngSubmit)="submitSignup()">
-            <h1 class="text-2xl text-[#3C507D]">Create Account</h1>
+            <h1 class="text-2xl !text-[#3C507D]">Create Account</h1>
             <span  class="mb-3 text-md text-[#3C507D]">Register with E-mail</span>
             <input type="text" id="name" placeholder="Enter Your Name" formControlName="name">
             @if (signupForm.get('name')?.errors && signupForm.get('name')?.touched) {
@@ -93,14 +93,14 @@
                     }
                 </div>
             }
-            <button class="bg-[#0B1F65] text-[#C08D2C] hover:bg-blue-950 text-sm font-semibold rounded-lg py-2.5 px-11.5 uppercase mt-2.5">Sign Up</button>
+            <button class="bg-[#0B1F65] text-[#C08D2C] hover:bg-blue-950 text-sm font-semibold !rounded-lg py-2.5 px-11.5 uppercase mt-3">Sign Up</button>
         </form>
     </div>
 
              <!-- Sign in -->
     <div class="form-container sign-in">
         <form [formGroup]="signinForm" (ngSubmit)="submitSignin()">
-            <h1 class="text-2xl text-[#3C507D]">Sign In</h1>
+            <h1 class="text-2xl !text-[#3C507D]">Sign In</h1>
             <span class="mb-5 text-md text-[#3C507D]">Sign in With Email & Password</span>
             <input type="email" id="email" placeholder="Enter Your Email" formControlName="email">
             @if (signinForm.get('email')?.errors && signinForm.get('email')?.touched) {
@@ -131,8 +131,8 @@
                     }
                 </div>
             }
-            <a class="mt-3 text-sm text-gray-600" href="#">Forget Password?</a>
-            <button class="bg-[#0B1F65] text-[#C08D2C] hover:bg-blue-950 text-sm font-semibold rounded-lg py-2.5 px-11.5 uppercase mt-2.5">Sign In</button>
+            <a class="my-3 text-sm !text-gray-600 !no-underline" href="#">Forget Password?</a>
+            <button class="bg-[#0B1F65] text-[#C08D2C] hover:bg-blue-950 text-sm font-semibold !rounded-lg py-2.5 px-11.5 uppercase mt-2.5">Sign In</button>
         </form>
     </div>
 
@@ -142,13 +142,13 @@
             <div class="toggle-panel toggle-left">
                 <h1>Welcome Back</h1>
                 <p>Sign in With Email & Password</p>
-                <button class="bg-transparent border border-[#E1C582] mt-5 rounded-lg py-2 px-8 uppercase text-sm" id="login" (click)="toggleMode()">Sign In</button>
+                <button class="bg-transparent border border-[#E1C582] mt-5 !rounded-lg py-2 px-8 uppercase text-sm" id="login" (click)="toggleMode()">Sign In</button>
             </div>
             <!--Redirect to Sign up Page-->
             <div class="toggle-panel toggle-right">
                 <h1>Hi There</h1>
                 <p>Sign up now and enjoy our site</p>
-                <button class="bg-transparent border border-[#E1C582] mt-5 rounded-lg py-2 px-8 uppercase text-sm" id="register" (click)="toggleMode()">Sign Up</button>
+                <button class="bg-transparent border border-[#E1C582] mt-5 !rounded-lg py-2 px-8 uppercase text-sm" id="register" (click)="toggleMode()">Sign Up</button>
             </div>
         </div>
     </div>

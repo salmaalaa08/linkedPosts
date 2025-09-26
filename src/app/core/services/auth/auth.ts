@@ -43,4 +43,8 @@ export class Auth {
     this.userData.next(null);
     this.route.navigate(['/signin']);
   }
+
+  getUserData():Observable<any>{
+    return this.http.get(`${environment.baseUrl}users/profile-data`)
+  }
 }

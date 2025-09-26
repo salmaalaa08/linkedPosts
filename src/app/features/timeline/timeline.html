@@ -1,2 +1,11 @@
-<p>timeline works!</p>
-<button class="bg-amber-600 text-white font-bold" (click)="signout()">logout</button>
+<!-- <div class=" bg-amber-200"> -->
+    <div class="container my-4 flex justify-center">
+        <div class="lg:w-[40%] sm:w-full">
+          @for(post of postsList(); track $index){
+            <app-post-card [postItem]="post"></app-post-card>
+          }
+        </div>
+      </div>
+      
+    
+    <!-- </div> -->

@@ -1,0 +1,17 @@
+  <nav  class="w-full mx-auto bg-[#0B1F65] py-3.5 shadow-sm rounded-lg">
+    <div class="container flex justify-between items-center">
+        <a class="!text-[rgb(192,141,44)] text-2xl font-bold !no-underline" href="#">
+            Linked Posts
+        </a>
+        <div class="ms-auto" ngbDropdown>
+            <a class="nav-link p-0" ngbDropdownToggle>
+              <img src="images/profile.png" class="rounded-circle w-8" alt="profile" />
+            </a>
+            <ul ngbDropdownMenu class="dropdown-menu-end shadow-sm !bg-[#F5F0E9]">
+              <li class="hover:!bg-[#E6DCCD]"><button class="dropdown-item hover:!bg-transparent !text-[#3C507D]"><i class="bi bi-person-circle me-2"></i> Profile</button></li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="hover:!bg-[#E6DCCD]"><button class="dropdown-item text-danger hover:!bg-transparent" (click)="signout()"><i class="bi bi-box-arrow-right me-2"></i> Logout</button></li>
+            </ul>
+          </div>
+    </div>
+  </nav>

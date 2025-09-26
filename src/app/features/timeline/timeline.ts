@@ -1,16 +1,29 @@
-import { Component, inject } from '@angular/core';
-import { Auth } from '../../core/services/auth/auth';
+import { Component, WritableSignal, inject, signal } from '@angular/core';
+import { PostCard } from '../../shared/components/post-card/post-card';
+import { PostsService } from '../../core/services/posts/posts-service';
 
 @Component({
   selector: 'app-timeline',
-  imports: [],
+  imports: [PostCard],
   templateUrl: './timeline.html',
   styleUrl: './timeline.css'
 })
 export class Timeline {
-  private auth = inject(Auth);
+  private posts = inject(PostsService);
 
-  signout(){
-    this.auth.signout();
+  postsList:WritableSignal<any[]> = signal([]);
+
+  getAllPosts(){
+    this.posts.getAllPosts().subscribe({
+      next: (res) => {
+        // console.log(res);
+        this.postsList.set(res.posts)
+        console.log(this.postsList())
+      }
+    })
+  }
+
+  ngOnInit(): void {
+    this.getAllPosts()
   }
 }
