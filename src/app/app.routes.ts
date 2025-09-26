@@ -7,17 +7,18 @@ import { AuthLayout } from './core/layouts/auth-layout/auth-layout';
 import { Signin } from './features/auth/signin/signin';
 import { Signup } from './features/auth/signup/signup';
 import { ChangePassword } from './features/auth/change-password/change-password';
+import { authGuardGuard } from './core/guards/auth/auth-guard-guard';
 
 export const routes: Routes = [
     {path:'', component:MainLayout, children:[
         {path:'', redirectTo:'timeline', pathMatch:'full'},
-        {path:'timeline', component:Timeline, title:'Timeline'},
-        {path:'profile', component:Profile, title:'Profile'}
+        {path:'timeline', component:Timeline, title:'Timeline', canActivate:[authGuardGuard]},
+        {path:'profile', component:Profile, title:'Profile', canActivate:[authGuardGuard]}
     ]},
     {path:'', component:AuthLayout, children:[
         {path:'signin', component:Signin, title:'SignIn'},
-        {path:'signup', component:Signup, title:'SignUp'},
-        {path:'changePassword', component:ChangePassword, title:'Change Password'}
+        // {path:'signup', component:Signup, title:'SignUp'},
+        // {path:'changePassword', component:ChangePassword, title:'Change Password'}
     ]},
     {path:'**', component:NotFound, title:'Not Found'}
 ];

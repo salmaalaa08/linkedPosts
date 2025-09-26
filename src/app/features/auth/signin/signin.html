@@ -1,1 +1,156 @@
-<p>signin works!</p>
+<div class="w-full h-dvh flex justify-center items-center">
+   <div class="container shadow border border-gray-100 w-[850px] rounded-4xl relative min-h-[600px]" [ngClass]="{'active': isSignUp}">
+   
+             <!-- Sign up -->
+    <div class="form-container  sign-up">
+        <form [formGroup]="signupForm" (ngSubmit)="submitSignup()">
+            <h1 class="text-2xl text-[#3C507D]">Create Account</h1>
+            <span  class="mb-3 text-md text-[#3C507D]">Register with E-mail</span>
+            <input type="text" id="name" placeholder="Enter Your Name" formControlName="name">
+            @if (signupForm.get('name')?.errors && signupForm.get('name')?.touched) {
+                <div class="text-red-600 text-sm">
+                    @if(signupForm.get('name')?.getError('required')){
+                        <p>Name is required</p>
+                    }
+                    @if(signupForm.get('name')?.getError('minlength')){
+                        <p>Minlength is 3 char</p>
+                    }
+                    @if(signupForm.get('name')?.getError('maxlength')){
+                        <p>Maxlength is 20 char</p>
+                    }
+                </div>
+            }
+            <input type="email" id="email" placeholder="Enter Your Email" formControlName="email">
+            @if (signupForm.get('email')?.errors && signupForm.get('email')?.touched) {
+                <div class="text-red-600 text-sm">
+                    @if(signupForm.get('email')?.getError('required')){
+                        <p>Email is required</p>
+                    }
+                    @if(signupForm.get('email')?.getError('email')){
+                        <p>Enter a valid email</p>
+                    }
+                </div>
+            }
+            <div class="relative w-full">
+                <input [type]="showPassword? 'text' : 'password'" 
+                id="password" 
+                placeholder="Enter Your Password" 
+                formControlName="password" 
+                class="pr-10 w-full">
+                <i [ngClass]="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"
+                (click)="togglePassword('password')"
+                 class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-600">
+                </i>
+            </div>
+            @if (signupForm.get('password')?.errors && signupForm.get('password')?.touched) {
+                <div class="text-red-600 text-sm">
+                    @if(signupForm.get('password')?.getError('required')){
+                        <p>Password is required</p>
+                    }
+                    @if(signupForm.get('password')?.getError('pattern')){
+                        <p>Enter a valid Password</p>
+                    }
+                </div>
+            }
+            <div class="relative w-full">
+                <input [type]="showRePassword? 'text' : 'password'" 
+                id="rePassword" 
+                placeholder="Enter Your Password" 
+                formControlName="rePassword" 
+                class="pr-10 w-full">
+                <i [ngClass]="showRePassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"
+                (click)="togglePassword('rePassword')"
+                 class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-600">
+                </i>
+            </div>
+            @if (signupForm.get('rePassword')?.errors && signupForm.get('rePassword')?.touched) {
+                <div class="text-red-600 text-sm">
+                    @if(signupForm.get('rePassword')?.getError('required')){
+                        <p>Confirm Password is required</p>
+                    }
+                </div>
+            }
+            @if(signupForm.getError('mismatch') && signupForm.get('rePassword')?.touched){
+                <p class="text-red-600 text-sm">Password and Confirm Password are not matched</p>
+            }
+            <input type="date" id="dateOfBirth" placeholder="Enter Your Date of Birth" formControlName="dateOfBirth">
+            @if (signupForm.get('dateOfBirth')?.errors && signupForm.get('dateOfBirth')?.touched) {
+                <div class="text-red-600 text-sm">
+                    @if(signupForm.get('dateOfBirth')?.getError('required')){
+                        <p>Date of Birth is required</p>
+                    }
+                </div>
+            }
+            <select name="gender" id="gender" formControlName="gender">
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            @if (signupForm.get('gender')?.errors && signupForm.get('gender')?.touched) {
+                <div class="text-red-600 text-sm">
+                    @if(signupForm.get('gender')?.getError('required')){
+                        <p>Gender is required</p>
+                    }
+                </div>
+            }
+            <button class="bg-[#0B1F65] text-[#C08D2C] hover:bg-blue-950 text-sm font-semibold rounded-lg py-2.5 px-11.5 uppercase mt-2.5">Sign Up</button>
+        </form>
+    </div>
+
+             <!-- Sign in -->
+    <div class="form-container sign-in">
+        <form [formGroup]="signinForm" (ngSubmit)="submitSignin()">
+            <h1 class="text-2xl text-[#3C507D]">Sign In</h1>
+            <span class="mb-5 text-md text-[#3C507D]">Sign in With Email & Password</span>
+            <input type="email" id="email" placeholder="Enter Your Email" formControlName="email">
+            @if (signinForm.get('email')?.errors && signinForm.get('email')?.touched) {
+                <div class="text-red-600 text-sm">
+                    @if(signinForm.get('email')?.getError('required')){
+                        <p>Email is required</p>
+                    }
+                    @if(signinForm.get('email')?.getError('email')){
+                        <p>Enter a valid email</p>
+                    }
+                </div>
+            }
+            <div class="relative w-full">
+                <input [type]="showSigninPassword? 'text' : 'password'" 
+                id="password" 
+                placeholder="Enter Your Password" 
+                formControlName="password" 
+                class="pr-10 w-full">
+                <i [ngClass]="showSigninPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"
+                (click)="togglePassword('signinPassword')"
+                 class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-600">
+                </i>
+            </div>
+            @if (signinForm.get('password')?.errors && signinForm.get('password')?.touched) {
+                <div class="text-red-600 text-sm">
+                    @if(signinForm.get('password')?.getError('required')){
+                        <p>Password is required</p>
+                    }
+                </div>
+            }
+            <a class="mt-3 text-sm text-gray-600" href="#">Forget Password?</a>
+            <button class="bg-[#0B1F65] text-[#C08D2C] hover:bg-blue-950 text-sm font-semibold rounded-lg py-2.5 px-11.5 uppercase mt-2.5">Sign In</button>
+        </form>
+    </div>
+
+            <!--Redirect to Sign in Page-->
+    <div class="toggle-container">
+        <div class="toggle bg-[#0B1F65] h-full text-[#C08D2C] relative">
+            <div class="toggle-panel toggle-left">
+                <h1>Welcome Back</h1>
+                <p>Sign in With Email & Password</p>
+                <button class="bg-transparent border border-[#E1C582] mt-5 rounded-lg py-2 px-8 uppercase text-sm" id="login" (click)="toggleMode()">Sign In</button>
+            </div>
+            <!--Redirect to Sign up Page-->
+            <div class="toggle-panel toggle-right">
+                <h1>Hi There</h1>
+                <p>Sign up now and enjoy our site</p>
+                <button class="bg-transparent border border-[#E1C582] mt-5 rounded-lg py-2 px-8 uppercase text-sm" id="register" (click)="toggleMode()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>
