@@ -6,11 +6,19 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { CookieService } from 'ngx-cookie-service';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { setHeaderInterceptor } from './core/interceptors/setHeader/set-header-interceptor';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { globalLoadingInterceptor } from './core/interceptors/loading/global-loading-interceptor';
+
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch(), withInterceptors([setHeaderInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([setHeaderInterceptor, globalLoadingInterceptor])),
     provideBrowserGlobalErrorListeners(),
+    provideAnimations(),
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
     importProvidersFrom([CookieService]),

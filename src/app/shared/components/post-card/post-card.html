@@ -3,13 +3,13 @@
     <div class="mb-3 shadow-sm rounded-4xl relative" [ngClass]="!postItem.image? 'py-5':'py-0'">
         @if(postItem.image){
           <img [src]="postItem.image" 
-             class="img-fluid rounded-3 mx-auto z-1" alt="post">
+             class="img-fluid rounded-3 mx-auto !z-0" alt="post">
         }
 
           <!-- User Info -->
-      <div class="d-flex align-items-center justify-between mb-2 absolute top-3 left-7 w-[90%] z-10">
+      <div class="d-flex align-items-center justify-between mb-2 absolute top-3 left-7 w-[90%] !z-10">
         <div class="!bg-[#C08D2C]/10 w-auto flex items-center py-2 px-2.5 rounded-4xl">
-        <img [src]="postItem.user.photo" class="rounded-circle me-2 w-10" alt="user">
+        <img [src]="postItem.user.photo" class="rounded-circle me-2 w-10 h-10" alt="user">
         <h6 class="mb-0 !text-[#3C507D]">{{postItem.user.name}}</h6>
        </div>
         <!-- Dropdown menu -->
