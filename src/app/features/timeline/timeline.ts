@@ -18,7 +18,7 @@ export class Timeline {
       next: (res) => {
         // console.log(res);
         this.postsList.set(res.posts)
-        console.log(this.postsList())
+        // console.log(this.postsList())
       }
     })
   }
