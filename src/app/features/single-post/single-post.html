@@ -1,0 +1,100 @@
+<div class="flex flex-col lg:flex-row h-[80vh]">
+
+    <!-- Image Section (half width if exists) -->
+     @if(post.image){
+        <div class="lg:w-1/2 w-full h-full">
+      <img 
+        [src]="post.image" 
+        alt="Post image" 
+        class="w-full h-full object-cover rounded-lg lg:rounded-l-lg lg:rounded-r-none"
+      />
+    </div>
+     }
+    
+  
+    <!-- Content Section -->
+    <div [class.lg:w-1/2]="post?.image" class="w-full flex flex-col p-6">
+      
+      <!-- User Info -->
+      <div class="flex items-center justify-between gap-3 mb-4">
+        <div class="!bg-[#C08D2C]/10 w-auto flex items-center py-2 px-4 rounded-full gap-3">
+            <img 
+          [src]="post.user.photo" 
+          alt="User Avatar" 
+          class="w-12 h-12 rounded-full object-cover"
+        />
+        <div class="mt-2">
+          <h3 class="font-semibold text-lg !text-[#3C507D]">{{ post?.user?.name }}</h3>
+        </div>
+        </div>
+        <p class="text-sm text-gray-500">{{ post?.createdAt | date:'medium' }}</p>
+
+      </div>
+  
+      <!-- Post Body -->
+      <div class="mb-6 text-gray-700 overflow-y-auto max-h-40">
+        <p>{{ post?.body }}</p>
+      </div>
+  
+      <!-- Comments Section -->
+      <div class="border-t pt-4 flex-1 flex flex-col">
+        <h4 class="font-semibold mb-3">Comments</h4>
+        
+        <!-- Scrollable Comments -->
+        <div class="space-y-3 overflow-y-auto flex-1 pr-2 max-h-52">
+            @for(comment of commentsList(); track $index){
+                <div class="p-3 bg-white border rounded-3 shadow-sm flex justify-between items-center">
+                    <div class="flex items-center w-full">
+                        <img [src]="comment.commentCreator.photo.includes('undefined')? 'images/profile.png' : comment.commentCreator.photo" class="rounded-circle me-2 w-8 h-8" alt="comment-user">
+                        @if(editingCommentId === comment._id){
+                            <div class="d-flex align-items-center w-full">
+                              <input type="text" [(ngModel)]="editingCommentContent" class="form-control me-2 !rounded-xl !bg-[#F5F0E9] focus:!ring-0 focus:!outline-0 focus:!border-[#F5F0E9] border-0 py-2"/>
+                              @if(isEdited()){
+                                <button class="btn !bg-[#0B1F65] hover:!bg-[#08164A] rounded-circle px-2.5 pt-2" (click)="updateComment(comment._id)">
+                                  <i class="fa-solid fa-check text-[#C08D2C]"></i>
+                              </button>
+                              } @else {
+                                <button class="btn btn-light rounded-circle px-2.5 pt-2 ms-2" (click)="cancelEditing()">
+                                <i class="fa-solid fa-xmark"></i>
+                              </button>
+                              }
+                            </div>
+                          } @else{
+                        <p class="text-sm mt-3">
+                      <span class="text-md font-semibold text-[#3C507D]">{{ comment?.commentCreator?.name }}:</span> {{ comment?.content }}
+                    </p>
+                }
+                    </div>
+                    @if(isCommentOwner(comment)){
+                        <div class="ms-auto" ngbDropdown>
+                        <button class="btn btn-link !text-[#3C507D] !text-md px-2.5 py-1 !rounded-3xl" ngbDropdownToggle>
+                          <i class="fa-solid fa-ellipsis !text-lg"></i>
+                        </button>
+                        <div ngbDropdownMenu class="dropdown-menu-end shadow-sm">
+                          <button class="dropdown-item" (click)="startEditing(comment)">
+                              <i class="fa-solid fa-pencil me-2"></i> Edit Comment
+                          </button>
+                          <button class="dropdown-item text-danger">
+                              <i class="fa-solid fa-trash me-2"></i> Delete Comment
+                          </button>
+                        </div>
+                      </div>
+                      }
+                </div>
+                
+            }
+            
+          
+        </div>
+        <div class="d-flex align-items-center mt-5">
+        <input type="text" [(ngModel)]="commentContent" class="form-control me-2 !rounded-xl !bg-[#F5F0E9] focus:!ring-0 focus:!outline-0 focus:!border-[#F5F0E9] border-0 py-2" placeholder="Your comment..." />
+        <button class="btn !bg-[#0B1F65] hover:!bg-[#08164A] rounded-circle px-2.5 pt-2" (click)="addComment(post._id)">
+            <i class="fa-solid fa-paper-plane text-[#C08D2C]"></i>
+        </button>
+      </div>
+      </div>
+      
+  
+    </div>
+  </div>
+  

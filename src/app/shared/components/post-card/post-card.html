@@ -1,9 +1,9 @@
 <div class="card !shadow-md border-0 !rounded-4xl mb-3">
     <!-- Post Image -->
-    <div class="mb-3 shadow-sm rounded-4xl relative" [ngClass]="!postItem.image? 'py-5':'py-0'">
+    <div class="mb-3 shadow-sm rounded-4xl relative" [ngClass]="!postItem.image? 'py-5':'py-0'" >
         @if(postItem.image){
           <img [src]="postItem.image" 
-             class="img-fluid rounded-3 mx-auto !z-0" alt="post">
+             class="img-fluid rounded-3 mx-auto !z-0" alt="post" (click)="openSinglePost()">
         }
 
           <!-- User Info -->
@@ -34,7 +34,7 @@
      
 
       <!-- Post Text -->
-      <div class="mb-3 w-full">
+      <div class="mb-3 w-full" (click)="openSinglePost()">
         @if(postItem.body){
           <p class="p-0 m-0">
             {{postItem.body}}
@@ -60,8 +60,8 @@
       <!-- Comments -->
       
         @for(comment of (showAll? commentsList() : commentsList().slice(0,1)); track $index){
-          <div class="mt-3 border rounded-3 p-2 shadow-sm overflow-clip">
-          <div class="d-flex mb-2 items-center justify-between">
+          <div class="mt-3 border rounded-3 p-2 shadow-sm w-full flex">
+          <div class="d-flex mb-2 items-center justify-between w-full">
             <div class="flex items-center min-w-40">
               <img [src]="comment.commentCreator.photo.includes('undefined')? 'images/profile.png' : comment.commentCreator.photo" class="rounded-circle me-2 w-8 h-8" alt="comment-user">
             <div class="flex flex-col">
@@ -70,14 +70,46 @@
             </div>
             </div>
             <div>
-              <p class="mb-0 small text-muted ms-2"> {{comment.content}}
+              @if(editingCommentId === comment._id){
+                <div class="d-flex align-items-center mt-3">
+                  <input type="text" [(ngModel)]="editingCommentContent" class="form-control me-2 !rounded-xl !bg-[#F5F0E9] focus:!ring-0 focus:!outline-0 focus:!border-[#F5F0E9] border-0 py-2"/>
+                  @if(isEdited()){
+                    <button class="btn !bg-[#0B1F65] hover:!bg-[#08164A] rounded-circle px-2.5 pt-2" (click)="updateComment(comment._id)">
+                      <i class="fa-solid fa-check text-[#C08D2C]"></i>
+                  </button>
+                  } @else {
+                    <button class="btn btn-light rounded-circle px-2.5 pt-2 ms-2" (click)="cancelEdit()">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                  }
+                </div>
+              } @else{
+                <p class="mb-0 small text-muted ms-2"> {{comment.content}}
                 <!-- <a href="#" class="!text-[#C08D2C] small">See More</a> -->
               </p>
+              }
+              
             </div>
           </div>
+          @if(isCommentOwner(comment)){
+            <div class="ms-auto w-[10%]" ngbDropdown>
+            <button class="btn btn-link !text-[#3C507D] !text-md px-2.5 py-1 !rounded-3xl" ngbDropdownToggle>
+              <i class="fa-solid fa-ellipsis !text-lg"></i>
+            </button>
+            <div ngbDropdownMenu class="dropdown-menu-end shadow-sm">
+              <button class="dropdown-item" (click)="startEdit(comment)">
+                  <i class="fa-solid fa-pencil me-2"></i> Edit Comment
+              </button>
+              <button class="dropdown-item text-danger" (click)="deleteComment(comment._id)">
+                  <i class="fa-solid fa-trash me-2"></i> Delete Comment
+              </button>
+            </div>
+          </div>
+          }
         </div>
         }
-      
+
+        
       <!-- Add Comment -->
       <div class="d-flex align-items-center mt-3">
         <input type="text" [(ngModel)]="commentContent" class="form-control me-2 !rounded-xl !bg-[#F5F0E9] focus:!ring-0 focus:!outline-0 focus:!border-[#F5F0E9] border-0 py-2" placeholder="Your comment..." />

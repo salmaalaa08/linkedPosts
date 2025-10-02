@@ -10,8 +10,11 @@ export class PostsService {
   private http = inject(HttpClient);
 
   getAllPosts():Observable<any>{
-    return this.http.get(`${environment.baseUrl}posts?limit=50`)
+    return this.http.get(`${environment.baseUrl}posts?limit=50`);
   }
 
+  getSinglePost(postId:string):Observable<any>{
+    return this.http.get(`${environment.baseUrl}posts/${postId}`);
+  }
   
 }

@@ -2,10 +2,18 @@
     <div class="container my-4 flex justify-center">
         <div class="lg:w-[40%] sm:w-full">
           @for(post of postsList(); track $index){
-            <app-post-card [postItem]="post"></app-post-card>
+            <app-post-card [postItem]="post" (openPost)="showSinglePost($event)"></app-post-card>
           }
         </div>
       </div>
       
+      @if(selectedPost){
+        <div class="fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.7)] flex justify-center items-center z-99999">
+          <div class="bg-white rounded-xl p-5 w-[90%] max-h-[90vh] overflow-y-auto relative shadow">
+            <button class="absolute top-5 right-5 bg-transparent text-2xl cursor-pointer" (click)="closeSinglePost()"><i class="fa-solid fa-xmark"></i></button>
+            <app-single-post [post]="selectedPost"></app-single-post>
+          </div>
+        </div>
+      }
     
     <!-- </div> -->
