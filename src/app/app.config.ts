@@ -9,15 +9,19 @@ import { setHeaderInterceptor } from './core/interceptors/setHeader/set-header-i
 import { NgxSpinnerModule } from "ngx-spinner";
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { globalLoadingInterceptor } from './core/interceptors/loading/global-loading-interceptor';
+import { provideToastr } from 'ngx-toastr';
+import { errMessageInterceptor } from './core/interceptors/errorMessage/err-message-interceptor';
+
 
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withFetch(), withInterceptors([setHeaderInterceptor, globalLoadingInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([setHeaderInterceptor, globalLoadingInterceptor, errMessageInterceptor])),
     provideBrowserGlobalErrorListeners(),
     provideAnimations(),
     BrowserAnimationsModule,
+    provideToastr(),
     NgxSpinnerModule,
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withViewTransitions()),
