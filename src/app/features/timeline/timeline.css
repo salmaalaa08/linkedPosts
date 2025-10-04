@@ -1,0 +1,7 @@
+.outer-shadow{
+    box-shadow: 
+    28px 28px 50px rgba(13,39,80,0.16),      
+    inset 0 0 43px #ffffff,                 
+    inset 0 0 48px rgba(13,39,80,0.16);     
+
+}

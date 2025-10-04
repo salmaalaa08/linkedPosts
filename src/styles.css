@@ -4,5 +4,9 @@
 @layer components{
     [ngbDropdownToggle]::after {
         display: none !important;
-      };
+      }
+      .modal-dialog {
+        transform: none !important;
+        transition: none !important;
+      }
 }

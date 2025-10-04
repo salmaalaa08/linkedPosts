@@ -16,5 +16,9 @@ export class PostsService {
   getSinglePost(postId:string):Observable<any>{
     return this.http.get(`${environment.baseUrl}posts/${postId}`);
   }
+
+  createPost(payload:FormData):Observable<any>{
+    return this.http.post(`${environment.baseUrl}posts`, payload);
+  }
   
 }

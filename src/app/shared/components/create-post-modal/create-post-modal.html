@@ -1,0 +1,19 @@
+<div class="fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.4)] flex justify-center items-center z-50">
+    <div class="outer-shadow p-3 w-[95%] sm:w-[80%] md:w-[60%] lg:w-[40%] rounded-xl">
+      <div class="bg-white rounded-xl p-5 relative max-h-[90vh] overflow-y-auto">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Post</h5>
+          <button type="button" class="btn-close" (click)="activeModel.dismiss()"></button>
+        </div>
+        <div class="modal-body flex flex-col gap-3">
+            <textarea type="text" [(ngModel)]="postContent" rows="5" class="form-control me-2 !rounded-xl !bg-[#F5F0E9] focus:!ring-0 focus:!outline-0 focus:!border-[#F5F0E9] border-0 py-2" placeholder="What's on your mind... ?"></textarea>
+            <input type="file" (change)="selectedFile($event)" class="custom-file-input form-control me-2 !rounded-xl !bg-[#F5F0E9] focus:!ring-0 focus:!outline-0 focus:!border-[#F5F0E9] border-0 py-2">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn !bg-[#0B1F65] !text-[#C08D2C] hover:!bg-[#08164A]" (click)="sumbit()">Post</button>
+          <button type="button" class="btn btn-danger" (click)="activeModel.dismiss()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

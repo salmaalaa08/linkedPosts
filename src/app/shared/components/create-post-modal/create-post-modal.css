@@ -1,0 +1,25 @@
+.outer-shadow{
+    border: 1px solid white;
+    box-shadow: 
+    28px 28px 50px rgba(13,39,80,0.16),      
+    inset 0 0 43px #ffffff,                 
+    inset 0 0 48px rgba(13,39,80,0.16);     
+}
+.custom-file-input::file-selector-button {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #0B1F65;
+    color: #C08D2C;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-right: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 400;
+    transition: background-color 0.2s ease;
+  }
+  
+  .custom-file-input::file-selector-button:hover {
+    background-color: #08164A !important;
+  }
+  

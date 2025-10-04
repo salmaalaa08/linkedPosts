@@ -2,6 +2,8 @@ import { Component, WritableSignal, inject, signal } from '@angular/core';
 import { PostCard } from '../../shared/components/post-card/post-card';
 import { PostsService } from '../../core/services/posts/posts-service';
 import { SinglePost } from "../single-post/single-post";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreatePostModal } from '../../shared/components/create-post-modal/create-post-modal';
 
 @Component({
   selector: 'app-timeline',
@@ -11,6 +13,7 @@ import { SinglePost } from "../single-post/single-post";
 })
 export class Timeline {
   private posts = inject(PostsService);
+  private modalService = inject(NgbModal);
 
   postsList:WritableSignal<any[]> = signal([]);
   selectedPost:any = null;
@@ -20,7 +23,7 @@ export class Timeline {
       next: (res) => {
         // console.log(res);
         this.postsList.set(res.posts)
-        // console.log(this.postsList())
+        console.log(this.postsList())
       }
     })
   }
@@ -35,5 +38,18 @@ export class Timeline {
 
   closeSinglePost(){
     this.selectedPost = null;
+  }
+
+  openModal(){
+    this.modalService.open(CreatePostModal).result.then(
+    (result) => {
+      console.log(result);
+    }, 
+    (reason) => {
+      if(reason == 'success'){
+        this.getAllPosts()
+      }
+    }
+  );
   }
 }
