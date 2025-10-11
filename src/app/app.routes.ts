@@ -1,33 +1,20 @@
 import { Routes } from '@angular/router';
-import { NotFound } from './features/not-found/not-found';
-import { MainLayout } from './core/layouts/main-layout/main-layout';
-import { Timeline } from './features/timeline/timeline';
-import { Profile } from './features/profile/profile';
-import { AuthLayout } from './core/layouts/auth-layout/auth-layout';
-import { Signin } from './features/auth/signin/signin';
-import { Signup } from './features/auth/signup/signup';
-import { ChangePassword } from './features/auth/change-password/change-password';
 import { authGuardGuard } from './core/guards/auth/auth-guard-guard';
-import { UserPosts } from './features/user-posts/user-posts';
-import { UserInfo } from './features/user-info/user-info';
-import { ProfilePic } from './features/profile-pic/profile-pic';
 
 export const routes: Routes = [
-    {path:'', component:MainLayout, children:[
+    {path:'', loadComponent:()=>import('./core/layouts/main-layout/main-layout').then((c)=>c.MainLayout), children:[
         {path:'', redirectTo:'timeline', pathMatch:'full'},
-        {path:'timeline', component:Timeline, title:'Timeline', canActivate:[authGuardGuard]},
-        {path:'profile', component:Profile, title:'Profile', canActivate:[authGuardGuard],children:[
+        {path:'timeline', loadComponent:()=>import('./features/timeline/timeline').then((c)=>c.Timeline), title:'Timeline', canActivate:[authGuardGuard]},
+        {path:'profile', loadComponent:()=>import('./features/profile/profile').then((c)=>c.Profile), title:'Profile', canActivate:[authGuardGuard],children:[
             {path:'', redirectTo:'posts', pathMatch:'full'},
-            {path:'posts', component:UserPosts},
-            {path:'userInfo', component:UserInfo},
-            {path:'changePass', component:ChangePassword},
-            {path:'profilePic', component:ProfilePic}
+            {path:'posts', loadComponent:()=>import('./features/user-posts/user-posts').then((c)=>c.UserPosts)},
+            {path:'userInfo', loadComponent:()=>import('./features/user-info/user-info').then((c)=>c.UserInfo)},
+            {path:'changePass', loadComponent:()=>import('./features/auth/change-password/change-password').then((c)=>c.ChangePassword)},
+            {path:'profilePic', loadComponent:()=>import('./features/profile-pic/profile-pic').then((c)=>c.ProfilePic)}
         ]}
     ]},
-    {path:'', component:AuthLayout, children:[
-        {path:'signin', component:Signin, title:'SignIn'},
-        // {path:'signup', component:Signup, title:'SignUp'},
-        // {path:'changePassword', component:ChangePassword, title:'Change Password'}
+    {path:'', loadComponent:()=>import('./core/layouts/auth-layout/auth-layout').then((c)=>c.AuthLayout), children:[
+        {path:'signin', loadComponent:()=>import('./features/auth/signin/signin').then((c)=>c.Signin), title:'SignIn'},
     ]},
-    {path:'**', component:NotFound, title:'Not Found'}
+    {path:'**', loadComponent:()=>import('./features/not-found/not-found').then((c)=>c.NotFound), title:'Not Found'}
 ];
