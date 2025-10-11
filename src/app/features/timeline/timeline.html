@@ -3,9 +3,14 @@
           <div class="rounded-3xl shadow p-3 my-3">
             <input type="text" readonly (click)="openModal()" class="form-control me-2 !rounded-xl !bg-[#F5F0E9] focus:!ring-0 focus:!outline-0 focus:!border-[#F5F0E9] border-0 py-2" placeholder="What's on your mind... ?">
           </div>
-          @for(post of postsList(); track $index){
+          @if(postsList().length>0){
+             @for(post of postsList(); track $index){
             <app-post-card [postItem]="post" (openPost)="showSinglePost($event)"></app-post-card>
           }
+          } @else {
+            <img src="images/noPosts.jpg" alt="">
+          }
+         
         </div>
       </div>
       

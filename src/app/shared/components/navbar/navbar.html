@@ -5,10 +5,10 @@
         </a>
         <div class="ms-auto" ngbDropdown>
             <a class="nav-link p-0" ngbDropdownToggle>
-              <img src="images/profile.png" class="rounded-circle w-8" alt="profile" />
+              <img [src]=" currentPic || 'images/profile.png'" class="rounded-circle w-8" alt="profile" />
             </a>
             <ul ngbDropdownMenu class="dropdown-menu-end shadow-sm !bg-[#F5F0E9]">
-              <li class="hover:!bg-[#E6DCCD]"><button class="dropdown-item hover:!bg-transparent !text-[#3C507D]"><i class="bi bi-person-circle me-2"></i> Profile</button></li>
+              <li class="hover:!bg-[#E6DCCD]"><button class="dropdown-item hover:!bg-transparent !text-[#3C507D]" routerLink="/profile"><i class="bi bi-person-circle me-2"></i> Profile</button></li>
               <li><hr class="dropdown-divider"></li>
               <li class="hover:!bg-[#E6DCCD]"><button class="dropdown-item text-danger hover:!bg-transparent" (click)="signout()"><i class="bi bi-box-arrow-right me-2"></i> Logout</button></li>
             </ul>

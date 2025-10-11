@@ -1,0 +1,14 @@
+<div class="m-5">
+    <h2 class="!text-[#3C507D]">Profile Picture</h2>
+</div>
+
+<div class="my-5 flex flex-col justify-center items-center gap-4">
+    <img [src]="currentPic || 'images/profile.png'" class="rounded-full border w-[40%]">
+    
+    <form [formGroup]="changePicture" (ngSubmit)="sumbit()" class="flex gap-3">
+        <label for="picpUpload" class="bg-[#C08D2C] text-white border-0 py-2 px-4 rounded-lg hover:bg-[#0B1F65] hover:!text-[#C08D2C] transition-all duration-300"><i class="fa fa-upload me-2.5"></i> Upload Picture</label>
+        <input type="file" id="picpUpload" (change)="selectedFile($event)" hidden>
+            
+        <button type="submit" class="bg-[#0B1F65] text-[#C08D2C] border-0 py-2 px-4 !rounded-lg hover:bg-[#C08D2C] hover:!text-white transition-all duration-300">Change Picture</button>
+    </form>
+</div>

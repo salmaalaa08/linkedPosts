@@ -47,4 +47,12 @@ export class Auth {
   getUserData():Observable<any>{
     return this.http.get(`${environment.baseUrl}users/profile-data`)
   }
+
+  changePassword(payload:any):Observable<any>{
+    return this.http.patch(`${environment.baseUrl}users/change-password`,payload)
+  }
+
+  changeProfile(payload:FormData):Observable<any>{
+    return this.http.put(`${environment.baseUrl}users/upload-photo`, payload)
+  }
 }

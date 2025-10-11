@@ -1,0 +1,36 @@
+<div class="m-5">
+    <h2 class="text-2xl font-semibold !text-[#3C507D] mb-4">User Info</h2>
+  
+    <div class="flex flex-col gap-5 shadow-md p-6 rounded-2xl border border-[#E0E0E0]">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col">
+          <label class="text-[#C08D2C] font-medium mb-1">Name</label>
+          <p class="border border-gray-200  rounded-lg px-4 py-2 text-[#0B1F65] bg-[#F5F0E9] shadow-sm">
+            {{ userData.name }}
+          </p>
+        </div>
+          <div class="flex flex-col">
+          <label class="text-[#C08D2C] font-medium mb-1">Email</label>
+          <p class="border border-gray-200 rounded-lg px-4 py-2 text-[#0B1F65] bg-[#F5F0E9] shadow-sm">
+            {{ userData.email }}
+          </p>
+        </div>
+      </div>
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col">
+          <label class="text-[#C08D2C] font-medium mb-1">Date of Birth</label>
+          <p class="border border-gray-200 rounded-lg px-4 py-2 text-[#0B1F65] bg-[#F5F0E9] shadow-sm">
+            {{ userData.dateOfBirth | date }}
+          </p>
+        </div>
+          <div class="flex flex-col">
+          <label class="text-[#C08D2C] font-medium mb-1">Gender</label>
+          <p class="border border-gray-200 rounded-lg px-4 py-2 text-[#0B1F65] bg-[#F5F0E9] shadow-sm capitalize">
+            {{ userData.gender }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

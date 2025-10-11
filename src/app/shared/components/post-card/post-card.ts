@@ -36,7 +36,7 @@ export class PostCard {
       next: (res) => {
         // console.log('user data:',res);
         this.userId = res.user._id;
-        console.log('userData', this.userId)
+        // console.log('userData', this.userId)
       }
     })
   }
@@ -124,5 +124,9 @@ export class PostCard {
 
   openSinglePost(){
     this.openPost.emit(this.postItem);
+  }
+
+  isPostOwner(post:any){
+    return this.userId === this.postItem.user._id;
   }
 }

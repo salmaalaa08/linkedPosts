@@ -21,4 +21,7 @@ export class PostsService {
     return this.http.post(`${environment.baseUrl}posts`, payload);
   }
   
+  getUserPosts(userId:string):Observable<any>{
+    return this.http.get(`${environment.baseUrl}users/${userId}/posts`);
+  }
 }

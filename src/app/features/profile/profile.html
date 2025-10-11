@@ -1,1 +1,42 @@
-<p>profile works!</p>
+<div class=" w-[90%] mx-auto my-3">
+    <h1 class="!text-[#0B1F65] mb-3">My Profile</h1>
+    <div class="flex gap-5">
+        <div class="w-[25%] shadow rounded-xl py-3 h-fit">
+         <p 
+         routerLink="posts" 
+         routerLinkActive="text-[#C08D2C] border-e-4 border-[#C08D2C]"
+         class="py-2 px-4 text-[#0B1F65] font-semibold hover:text-[#C08D2C] hover:border-e-4 hover:border-[#C08D2C]">
+         <i class="fa-solid fa-file-invoice me-2"></i>
+         <span>Posts</span>
+        </p>
+         <hr>
+         <p 
+         routerLink="userInfo"
+         routerLinkActive="text-[#C08D2C] border-e-4 border-[#C08D2C]"
+         class="py-2 px-4 text-[#0B1F65] font-semibold hover:text-[#C08D2C] hover:border-e-4 hover:border-[#C08D2C]">
+         <i class="fa-solid fa-address-card me-2"></i>
+         <span>User Info</span>
+        </p>
+         <hr>
+         <p 
+         routerLink="changePass"
+         routerLinkActive="text-[#C08D2C] border-e-4 border-[#C08D2C]" 
+         class="py-2 px-4 text-[#0B1F65] font-semibold hover:text-[#C08D2C] hover:border-e-4 hover:border-[#C08D2C]">
+         <i class="fa-solid fa-lock me-2"></i>
+         <span>Change Password</span>
+        </p>
+         <hr>
+         <p 
+         routerLink="profilePic"
+         routerLinkActive="text-[#C08D2C] border-e-4 border-[#C08D2C]"
+         class="py-2 px-4 text-[#0B1F65] font-semibold hover:text-[#C08D2C] hover:border-e-4 hover:border-[#C08D2C]">
+         <i class="fa-solid fa-image me-2"></i>
+         <span>Profile Picture</span>
+        </p>
+    </div>
+    <div class="w-[75%] shadow rounded-xl">
+        <router-outlet></router-outlet>
+    </div>
+    </div>
+    
+</div>
